@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cloud-client
+
+server:
+  host: http://localhost
+  port: 8101
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    #可以将IP注册到Eureka上，如果不配置就是机器的主机名
+    prefer-ip-address: true

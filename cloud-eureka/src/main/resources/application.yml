@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cloud-eureka
+
+server:
+  host: http://localhost
+  port: 8000
+eureka:
+  client:
+    #是否检索服务（服务治理中心是维护服务实例的，所以也不需要这个功能）
+    fetch-registry: false
+    #是否注册给服务中心（自身就是服务治理中心，关闭）
+    register-with-eureka: false
+    service-url:
+      defaultZone: ${server.host}:${server.port}/eureka/
+  instance:
+    prefer-ip-address: true

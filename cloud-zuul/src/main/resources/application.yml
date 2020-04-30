@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: cloud-zuul
+
+server:
+  port: 80
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    prefer-ip-address: true
+
+# 网关配置
+zuul:
+  #全局重试开关
+  retryable: true
+
+  # 不路由的路径
+  ignored-patterns: /**/hello/**
+  # 统一前缀
+  prefix:
+  routes:
+    cloud-server:
+      path: /myserver/**
+      url: http://localhost:8202
+    cloud-client:
+      # 指定路由重试开关
+#      retryable: true
+      ribbon:
+        #对当前实例的重试次数
+        MaxAutoRetries: 3
+        #切换实例的重试次数
+        MaxAutoRetriesNextServer: 2
+      path: /myclient/**
+      serviceId: cloud-client

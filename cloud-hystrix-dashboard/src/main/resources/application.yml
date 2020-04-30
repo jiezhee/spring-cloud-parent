@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: cloud-hystrix-dashboard
+
+server:
+  host: http://localhost
+  port: 6001
